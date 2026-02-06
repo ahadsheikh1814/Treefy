@@ -3,6 +3,7 @@ import prisma from "../lib/prisma"
 import { claimUsername, createLink, deleteLink } from "./actions"
 import Link from "next/link"
 import { CopyButton } from "./components/copybutton"
+import { ExternalLink, Trash2, Link as LinkIcon } from "lucide-react"
 
 export default async function Home() {
   const authUser = await currentUser()
@@ -140,15 +141,22 @@ export default async function Home() {
         <section className="flex flex-1 flex-col justify-center gap-8">
           <div className=" flex justify-between items-center">
             <div className="space-y-4 text-center sm:text-left">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Hey, <Link href={`/${dbUser.username}`}>@{dbUser.username}</Link>
-            </h1>
-            <p className="max-w-xl text-sm text-[#6B7280] sm:text-base">
-              Manage the links your supporters will see on your page.
-            </p>
+              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+                Hey,{" "}
+                <Link
+                  href={`/${dbUser.username}`}
+                  className="inline-flex items-center gap-1 underline"
+                >
+                  @{dbUser.username}
+                  <ExternalLink size={18} />
+                </Link>
+              </h1>
+              <p className="max-w-xl text-sm text-[#6B7280] sm:text-base">
+                Manage the links your supporters will see on your page.
+              </p>
             </div>
             <div className="cursor-pointer">
-            <CopyButton url={`https://your-domain.com/${dbUser.username}`} />
+              <CopyButton url={`https://your-domain.com/${dbUser.username}`} />
             </div>
           </div>
 
@@ -204,7 +212,8 @@ export default async function Home() {
               <h2 className="text-lg font-semibold mb-3">Your links</h2>
 
               {dbUser.links.length === 0 ? (
-                <p className="text-sm text-[#6B7280]">
+                <p className="flex items-center gap-2 text-sm text-[#6B7280]">
+                  <LinkIcon size={18} />
                   You haven&apos;t added any links yet. Start by adding your most
                   important link.
                 </p>
@@ -234,9 +243,10 @@ export default async function Home() {
                         />
                         <button
                           type="submit"
-                          className="inline-flex items-center justify-center rounded-full border border-[#E5E5E5] bg-white px-4 py-2 text-xs font-medium text-black hover:bg-[#F7F7F7]"
+                          aria-label="Delete link"
+                          className="inline-flex items-center justify-center rounded-full border border-[#E5E5E5] bg-white px-3 py-2 text-xs text-black hover:bg-[#F7F7F7]"
                         >
-                          Delete
+                          <Trash2 size={18} />
                         </button>
                       </form>
                     </li>
