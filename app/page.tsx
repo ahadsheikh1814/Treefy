@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server"
 import prisma from "../lib/prisma"
 import { claimUsername, createLink, deleteLink } from "./actions"
+import Link from "next/link"
 
 export default async function Home() {
   const authUser = await currentUser()
@@ -138,7 +139,7 @@ export default async function Home() {
         <section className="flex flex-1 flex-col justify-center gap-8">
           <div className="space-y-4 text-center sm:text-left">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Hey, @{dbUser.username}
+              Hey, <Link href={`/${dbUser.username}`}>@{dbUser.username}</Link>
             </h1>
             <p className="max-w-xl text-sm text-[#6B7280] sm:text-base">
               Manage the links your supporters will see on your page.
