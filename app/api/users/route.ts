@@ -17,12 +17,30 @@ export async function GET(_request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
+
+    const { clerkId, email, username, name } = body as {
+      clerkId?: string
+      email?: string
+      username?: string
+      name?: string | null
+    }
+
+    if (!clerkId || !email || !username) {
+      return NextResponse.json(
+        { error: "clerkId, email, and username are required" },
+        { status: 400 }
+      )
+    }
+
     const user = await prisma.user.create({
       data: {
-        email: body.email,
-        name: body.name,
+        clerkId,
+        email,
+        username,
+        name: name ?? null,
       },
     })
+
     return NextResponse.json(user, { status: 201 })
   } catch (error) {
     console.error("Error creating user:", error)
@@ -32,4 +50,3 @@ export async function POST(request: NextRequest) {
     )
   }
 }
-
