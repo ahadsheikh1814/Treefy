@@ -2,6 +2,7 @@ import { currentUser } from "@clerk/nextjs/server"
 import prisma from "../lib/prisma"
 import { claimUsername, createLink, deleteLink } from "./actions"
 import Link from "next/link"
+import { CopyButton } from "./components/copybutton"
 
 export default async function Home() {
   const authUser = await currentUser()
@@ -137,13 +138,18 @@ export default async function Home() {
     <main className="min-h-screen bg-white text-black">
       <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-10 sm:px-6 lg:px-8">
         <section className="flex flex-1 flex-col justify-center gap-8">
-          <div className="space-y-4 text-center sm:text-left">
+          <div className=" flex justify-between items-center">
+            <div className="space-y-4 text-center sm:text-left">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
               Hey, <Link href={`/${dbUser.username}`}>@{dbUser.username}</Link>
             </h1>
             <p className="max-w-xl text-sm text-[#6B7280] sm:text-base">
               Manage the links your supporters will see on your page.
             </p>
+            </div>
+            <div className="cursor-pointer">
+            <CopyButton url={`https://your-domain.com/${dbUser.username}`} />
+            </div>
           </div>
 
           <div className="space-y-4">
