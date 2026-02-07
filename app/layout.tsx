@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Treefy | All Your Links.One Smart Tree.',
   description: ' Share everything you create with one simple Treefy link.',
-  icons: { icon: '/Treefy.ico' },
+  icons: { icon: '/favicon.ico' },
 }
 
 export default function RootLayout({
