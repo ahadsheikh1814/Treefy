@@ -12,9 +12,10 @@ export default async function Home() {
   // 1. Logged out → Landing page with "Sign In" button
   if (!authUser) {
     return (
-      <main className="min-h-screen bg-white text-black">
-        <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-10 sm:px-6 lg:px-8">
-          <section className="flex flex-1 flex-col justify-center">
+      <main className="min-h-screen bg-white text-black relative">
+        <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-10 sm:px-6 lg:px-8 relative">
+          <div className="hero-glow" aria-hidden />
+          <section className="flex flex-1 flex-col justify-center relative">
             <div className="space-y-6 text-center sm:text-left">
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
                 All Your Links.
@@ -48,7 +49,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="mt-10 rounded-xl border border-[#E5E5E5] bg-[#F7F7F7] p-6 sm:p-8">
+            <div className="card mt-10">
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                 {/* Left */}
@@ -113,7 +114,7 @@ export default async function Home() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-[#E5E5E5] bg-[#F7F7F7] p-6 sm:p-8">
+              <div className="card">
                 <form action={claimUsername} className="space-y-5">
                   <div className="space-y-2">
                     <label
@@ -180,7 +181,7 @@ export default async function Home() {
 
           <div className="space-y-4">
             {/* Add Link form */}
-            <div className="rounded-xl border border-[#E5E5E5] bg-[#F7F7F7] p-6 sm:p-8">
+            <div className="card">
               <h2 className="text-lg font-semibold mb-3">Add a new link</h2>
               <form action={createLink} className="space-y-4">
                 <div className="space-y-2">
@@ -226,7 +227,7 @@ export default async function Home() {
             </div>
 
             {/* Existing links list */}
-            <div className="rounded-xl border border-[#E5E5E5] bg-white p-6 sm:p-8">
+            <div className="card">
               <h2 className="text-lg font-semibold mb-3">Your links</h2>
 
               {dbUser.links.length === 0 ? (
@@ -242,7 +243,7 @@ export default async function Home() {
                       key={link.id}
                       className="flex items-center justify-between rounded-full border border-[#E5E5E5] bg-[#F7F7F7] px-4 py-3 text-sm"
                     >
-                      <div className="min-w-0">
+                      <div className="min-w-0 px-2">
                         <p className="truncate font-medium">{link.title}</p>
                         <a
                           href={link.url}

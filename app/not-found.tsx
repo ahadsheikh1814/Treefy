@@ -5,7 +5,7 @@ export default function NotFound() {
     <main className="min-h-screen bg-white text-black">
       <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-10 sm:px-6 lg:px-8">
         <section className="flex flex-1 items-center justify-center">
-          <div className="max-w-md w-full text-center space-y-6">
+          <div className="card max-w-md w-full text-center space-y-6">
             <h1 className="text-5xl font-extrabold tracking-tight">
               404
             </h1>
