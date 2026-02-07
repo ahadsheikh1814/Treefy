@@ -4,6 +4,7 @@ import { claimUsername, createLink, deleteLink } from "./actions"
 import Link from "next/link"
 import { CopyButton } from "./components/copybutton"
 import { ExternalLink, Trash2, Link as LinkIcon } from "lucide-react"
+import { SignInButton } from "@clerk/nextjs"
 
 export default async function Home() {
   const authUser = await currentUser()
@@ -16,52 +17,69 @@ export default async function Home() {
           <section className="flex flex-1 flex-col justify-center">
             <div className="space-y-6 text-center sm:text-left">
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                Support my work
+                All Your Links.
                 <br />
-                with a coffee.
+                One Smart Tree.
+
+
               </h1>
               <p className="mx-auto max-w-xl text-sm text-[#6B7280] sm:mx-0 sm:text-base">
-                A small tip helps me spend more time building things you love.
-                No subscriptions, just simple one‑time support.
+                Share everything you create with one simple Treefy link.
               </p>
 
               <div className="mt-4 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+                <SignInButton>
+                  <button className="inline-flex items-center justify-center rounded-full bg-[#FFDD00] px-8 py-4 text-sm font-semibold
+                   text-black shadow-sm hover:brightness-95 cursor-pointer">
+                    Sign in to support
+                  </button>
+                </SignInButton>
+
                 <a
-                  href="/sign-in"
-                  className="inline-flex items-center justify-center rounded-full bg-[#FFDD00] px-8 py-4 text-sm font-semibold text-black shadow-sm hover:brightness-95"
-                >
-                  Sign in to support
-                </a>
-                <button
+                  href="https://github.com/ahadsheikh1814/Treefy"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   type="button"
-                  className="inline-flex items-center justify-center rounded-full border border-[#E5E5E5] bg-white px-8 py-4 text-sm font-medium text-black hover:bg-[#F7F7F7]"
+                  className="inline-flex items-center justify-center rounded-full border border-[#E5E5E5] bg-white px-8 py-4 text-sm
+                   font-medium text-black hover:bg-[#F7F7F7] cursor-pointer"
                 >
                   Learn more
-                </button>
+                </a>
               </div>
             </div>
 
             <div className="mt-10 rounded-xl border border-[#E5E5E5] bg-[#F7F7F7] p-6 sm:p-8">
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+                {/* Left */}
                 <div className="flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FFDD00] text-lg">
-                    ☕
+                    🚀
                   </div>
+
                   <div className="space-y-1 text-left">
-                    <p className="text-sm font-semibold">Tiny tips, big impact</p>
+                    <p className="text-sm font-semibold">Treefy is Open Source</p>
                     <p className="text-xs text-[#6B7280] sm:text-sm">
-                      Every coffee keeps this project alive and growing.
+                      Built by the community — contribute, star, and help it grow.
                     </p>
                   </div>
                 </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium">
-                  <span className="rounded-full bg-[#F7F7F7] px-3 py-1">
-                    ☕ x 3
+
+                {/* Right */}
+                <a
+                  href="https://github.com/ahadsheikh1814/Treefy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium">
+                  <span className="rounded-full bg-[#F0FDF4] px-3 py-1">
+                    ⭐ Star
                   </span>
-                  <span className="text-[#6B7280]">$9.00</span>
-                </div>
+                  <span className="text-[#6B7280]">GitHub</span>
+                </a>
+
               </div>
             </div>
+
           </section>
         </div>
       </main>
@@ -156,7 +174,7 @@ export default async function Home() {
               </p>
             </div>
             <div className="cursor-pointer">
-              <CopyButton url={`https://your-domain.com/${dbUser.username}`} />
+              <CopyButton url={`${process.env.NEXT_PUBLIC_APP_URL}/${dbUser.username}`} />
             </div>
           </div>
 
