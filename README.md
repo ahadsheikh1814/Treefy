@@ -1,8 +1,8 @@
 # Treefy
 
-![Treefy Logo](https://treefy-three.vercel.app/tfy.ico) 
+![Treefy Logo](https://treefy-three.vercel.app/tfy.ico)
 
-**All your links. One smart tree.** — Share everything you create with one simple Treefy link.
+**All your links. One smart tree.** — Share everything you create with one simple [Treefy](https://treefy-three.vercel.app) link.
 
 A [Linktree](https://linktr.ee)-style app: sign in, claim a username, add links, and get a public profile at `yoursite.com/your_username`.
 
