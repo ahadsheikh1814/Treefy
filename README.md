@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Treefy
 
-## Getting Started
+![Treefy Logo](https://treefy-three.vercel.app/tfy.ico) 
 
-First, run the development server:
+**All your links. One smart tree.** — Share everything you create with one simple Treefy link.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A [Linktree](https://linktr.ee)-style app: sign in, claim a username, add links, and get a public profile at `yoursite.com/your_username`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 16** (App Router) + **React 19**
+- **Clerk** — authentication
+- **Prisma** + **PostgreSQL** — users and links
+- **Tailwind CSS 4** — styling
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Prerequisites
 
-## Learn More
+- Node.js 18+
+- PostgreSQL database
+- [Clerk](https://clerk.com) account (for auth)
 
-To learn more about Next.js, take a look at the following resources:
+## Getting started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone and install**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   git clone https://github.com/ahadsheikh1814/Treefy.git
+   cd Treefy
+   npm install
+   ```
 
-## Deploy on Vercel
+2. **Environment variables**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Create a `.env` file in the project root:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```env
+   DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require"
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_..."
+   CLERK_SECRET_KEY="sk_..."
+   NEXT_PUBLIC_APP_URL="http://localhost:3000"
+   ```
+
+   Use your Clerk dashboard and database URL. For production, set `NEXT_PUBLIC_APP_URL` to your deployed URL.
+
+3. **Database**
+
+   ```bash
+   npx prisma db push
+   ```
+
+4. **Run the app**
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000).
+
+## Scripts
+
+| Command        | Description                |
+|----------------|----------------------------|
+| `npm run dev`  | Start dev server           |
+| `npm run build`| Production build           |
+| `npm run start`| Start production server    |
+| `npm run lint` | Run ESLint                 |
+| `npm run db:studio` | Open Prisma Studio   |
+
+## Project structure
+
+- `app/` — App Router pages and layout
+  - `page.tsx` — Landing (logged out), claim-username form, or dashboard (logged in)
+  - `[username]/page.tsx` — Public profile page
+  - `actions.ts` — Server actions (claim username, add/delete links)
+  - `api/users/` — Clerk webhook for user sync
+- `app/components/` — Navbar, footer, copy button
+- `lib/prisma.ts` — Prisma client
+- `prisma/schema.prisma` — User and Link models
+
+## Deploy
+
+The app is set up for [Vercel](https://vercel.com). Add the same env vars in the project settings, connect your repo, and deploy.
+
+---
+
+Built with ❤️ by [Ahad Sheikh](https://ahadsheikh.vercel.app).
